@@ -11,4 +11,6 @@ object PictureConstants {
 
     val preUrl = "https://cn.bing.com"
 
+    val nodeName = "image"
+
 }

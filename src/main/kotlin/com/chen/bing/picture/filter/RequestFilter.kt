@@ -17,12 +17,13 @@ import javax.servlet.http.HttpServletRequest
 @WebFilter(filterName = "requestFilter",urlPatterns = ["/*"])
 class RequestFilter: Filter {
 
-    private val path = "/bing/picture"
+    private val path = "/picture/"
 
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         val servletRequest = request as HttpServletRequest
         if (path == servletRequest?.requestURI){
             chain!!.doFilter(request, response)
         }
+        println(servletRequest.requestURI)
     }
 }

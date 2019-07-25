@@ -3,9 +3,17 @@ spring:
     name: bing-picture
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://39.108.228.210:3306/picture
+    username: root
+    password: 729158
+    type: com.zaxxer.hikari.HikariDataSource
+  redis:
+    host: 39.108.228.210
+    port: 6379
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
 server:
   port: 80
-
-
-baseUrl: https://cn.bing.com/HPImageArchive.aspx?
-preUrl: https://cn.bing.com
