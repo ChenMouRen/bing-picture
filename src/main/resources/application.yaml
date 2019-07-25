@@ -5,3 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 server:
   port: 80
+
+
+baseUrl: https://cn.bing.com/HPImageArchive.aspx?
+preUrl: https://cn.bing.com
