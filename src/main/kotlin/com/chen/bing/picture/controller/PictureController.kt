@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
  * @description:
  */
 @RestController
-@RequestMapping("/v1/picture")
+@RequestMapping("/picture")
 class PictureController {
 
     @Autowired
@@ -28,22 +28,23 @@ class PictureController {
 
     @GetMapping("/all")
     fun getPicture(): List<Picture>{
-        var pictureData = redisTemplate.opsForList().rightPop("pictureData") as List<Picture>
+        var pictureData = redisTemplate.opsForList().rightPop("pictureData")
         if (pictureData == null) {
             pictureData = pictureRepository.findAll()
             redisTemplate.opsForList().rightPush("pictureData", pictureData)
         }
-        return pictureData
+        return pictureData as List<Picture>
     }
 
     @GetMapping("/date")
     fun getPictureByDate(date: String): Picture{
-        var picture = redisTemplate.opsForValue().get(date) as Picture
+        var picture = redisTemplate.opsForValue().get(date)
         if (picture == null) {
+            println(picture == null)
             picture =  pictureRepository.findByReleaseDate(date)
             picture.releaseDate?.let { redisTemplate.opsForValue().set(it,picture) }
         }
-        return picture
+        return picture as Picture
     }
 
 }

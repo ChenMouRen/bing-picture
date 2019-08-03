@@ -1,6 +1,7 @@
 package com.chen.bing.picture.bean
 
 import lombok.Data
+import java.io.Serializable
 import java.text.DateFormat
 import java.time.Duration
 import java.time.LocalDate
@@ -15,7 +16,7 @@ import javax.persistence.*
  */
 @Table(name = "picture")
 @Entity
-class Picture : Comparable<Picture> {
+class Picture : Comparable<Picture>, Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
