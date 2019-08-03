@@ -24,4 +24,12 @@ object OkHttpUtils {
         okHttpClient.newCall(request).enqueue(callBack)
     }
 
+    fun sendSynchronizeRequestToGetPictureData(url: String,idx: Int,n: Int): Response {
+        return sendSynchronizeGetRequest("${url}idx=${idx}&n=${n}")
+    }
+
+    fun sendAsynchronousRequestToGetPictureData(url: String,idx: Int,n: Int,callBack: Callback){
+        sendAsynchronousGetRequest("${url}idx=${idx}&n=${n}",callBack)
+    }
+
 }

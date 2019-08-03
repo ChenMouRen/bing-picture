@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository
  */
 @Repository
 interface PictureRepository: JpaRepository<Picture,Long> {
+
+    fun findByReleaseDate(releaseDate: String): Picture
 }

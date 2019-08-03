@@ -32,8 +32,8 @@ class Picture : Comparable<Picture> {
 
     override fun compareTo(other: Picture): Int {
         val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        return - Period.between(LocalDate.parse(releaseDate,dateFormat),
-                LocalDate.parse(other.releaseDate,dateFormat)).days
+        return 0 - Period.between(LocalDate.parse(releaseDate, dateFormat),
+                LocalDate.parse(other.releaseDate, dateFormat)).days
     }
 
     override fun toString(): String {

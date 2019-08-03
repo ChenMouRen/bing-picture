@@ -6,6 +6,7 @@ import com.chen.bing.picture.dao.PictureRepository
 import com.chen.bing.picture.utils.OkHttpUtils
 import com.chen.bing.picture.utils.XMLUtils
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -16,15 +17,33 @@ import org.springframework.web.bind.annotation.RestController
  * @description:
  */
 @RestController
-@RequestMapping("/picture")
+@RequestMapping("/v1/picture")
 class PictureController {
 
     @Autowired
     private lateinit var pictureRepository: PictureRepository
 
-    @GetMapping
+    @Autowired
+    private lateinit var redisTemplate: RedisTemplate<Any,Any>
+
+    @GetMapping("/all")
     fun getPicture(): List<Picture>{
-        return pictureRepository.findAll()
+        var pictureData = redisTemplate.opsForList().rightPop("pictureData") as List<Picture>
+        if (pictureData == null) {
+            pictureData = pictureRepository.findAll()
+            redisTemplate.opsForList().rightPush("pictureData", pictureData)
+        }
+        return pictureData
+    }
+
+    @GetMapping("/date")
+    fun getPictureByDate(date: String): Picture{
+        var picture = redisTemplate.opsForValue().get(date) as Picture
+        if (picture == null) {
+            picture =  pictureRepository.findByReleaseDate(date)
+            picture.releaseDate?.let { redisTemplate.opsForValue().set(it,picture) }
+        }
+        return picture
     }
 
 }
