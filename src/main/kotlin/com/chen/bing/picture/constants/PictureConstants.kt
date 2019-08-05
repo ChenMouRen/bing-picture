@@ -13,4 +13,6 @@ object PictureConstants {
 
     val nodeName = "image"
 
+    val allDataKeyName = "pictureData"
+
 }
