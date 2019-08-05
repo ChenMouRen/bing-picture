@@ -40,7 +40,6 @@ class PictureController {
     fun getPictureByDate(date: String): Picture{
         var picture = redisTemplate.opsForValue().get(date)
         if (picture == null) {
-            println(picture == null)
             picture =  pictureRepository.findByReleaseDate(date)
             picture.releaseDate?.let { redisTemplate.opsForValue().set(it,picture) }
         }

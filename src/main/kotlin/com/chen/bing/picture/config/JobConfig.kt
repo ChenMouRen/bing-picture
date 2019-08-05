@@ -6,8 +6,11 @@ import com.chen.bing.picture.dao.PictureRepository
 import com.chen.bing.picture.utils.OkHttpUtils
 import com.chen.bing.picture.utils.XMLUtils
 import lombok.extern.slf4j.Slf4j
+import org.omg.CORBA.Object
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.redis.connection.RedisConnection
+import org.springframework.data.redis.core.RedisCallback
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
@@ -40,9 +43,9 @@ class JobConfig {
             val pictureData = XMLUtils.getPictureDataFromXMl(response.body!!.byteStream())
             logger.info(pictureData.toString())
             pictureData.takeIf { pictureData.isNotEmpty() }.let {
-                pictureData.forEach {
-                    redisTemplate.opsForList().rightPush("pictureData",it)
-                    it.releaseDate?.let { it1 -> redisTemplate.opsForValue().set(it1,it) }
+                redisTemplate.execute { connection ->
+                    connection.flushAll()
+                    "flushAll"
                 }
                 pictureRepository.saveAll(pictureData)
             }

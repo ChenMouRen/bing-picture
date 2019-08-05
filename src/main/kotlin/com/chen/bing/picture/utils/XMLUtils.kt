@@ -18,7 +18,7 @@ object XMLUtils {
         val document = initDocument(inputStream)
         val rootElement = document.rootElement
         rootElement.elementIterator(PictureConstants.nodeName).forEach {
-            var picture: Picture = Picture()
+            var picture = Picture()
             picture.releaseDate = spiltDate(it.node(2).text)
             picture.url = PictureConstants.preUrl + it.node(3).text
             picture.copyRight = it.node(5).text
