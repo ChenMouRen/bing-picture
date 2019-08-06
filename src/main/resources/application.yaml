@@ -7,6 +7,8 @@ spring:
     username: root
     password: 729158
     type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 2
   redis:
     host: 39.108.228.210
     port: 6379
