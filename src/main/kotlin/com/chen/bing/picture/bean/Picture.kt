@@ -1,9 +1,6 @@
 package com.chen.bing.picture.bean
 
-import lombok.Data
 import java.io.Serializable
-import java.text.DateFormat
-import java.time.Duration
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter

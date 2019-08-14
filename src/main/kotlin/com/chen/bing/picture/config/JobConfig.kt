@@ -5,12 +5,8 @@ import com.chen.bing.picture.constants.PictureConstants
 import com.chen.bing.picture.dao.PictureRepository
 import com.chen.bing.picture.utils.OkHttpUtils
 import com.chen.bing.picture.utils.XMLUtils
-import lombok.extern.slf4j.Slf4j
-import org.omg.CORBA.Object
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.redis.connection.RedisConnection
-import org.springframework.data.redis.core.RedisCallback
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.scheduling.annotation.EnableScheduling
 import org.springframework.scheduling.annotation.Scheduled
