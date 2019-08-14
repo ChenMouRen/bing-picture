@@ -45,7 +45,7 @@ class JobConfig {
             pictureData.takeIf { pictureData.isNotEmpty() }.let {
                 redisTemplate.execute { connection ->
                     connection.flushAll()
-                    "flushAll"
+                    null
                 }
                 pictureRepository.saveAll(pictureData)
             }

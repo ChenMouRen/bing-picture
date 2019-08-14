@@ -1,12 +1,8 @@
 package com.chen.bing.picture.controller
 
 import com.alibaba.fastjson.JSON
-import com.chen.bing.picture.bean.Picture
 import com.chen.bing.picture.constants.PictureConstants
 import com.chen.bing.picture.dao.PictureRepository
-import com.chen.bing.picture.utils.OkHttpUtils
-import com.chen.bing.picture.utils.XMLUtils
-import org.hibernate.cfg.MetadataSourceType
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.http.MediaType
@@ -31,9 +27,8 @@ class PictureController {
     private lateinit var redisTemplate: RedisTemplate<String, String>
 
     @GetMapping("/all")
-    fun getPicture(): String? {
+    fun getAllPicture(): String? {
         var pictureData: String? = null
-        println(redisTemplate.keys("*"))
         if (redisTemplate.keys("*").contains(PictureConstants.allDataKeyName)) {
             pictureData = redisTemplate.opsForValue().get("pictureData") as String
         } else {
