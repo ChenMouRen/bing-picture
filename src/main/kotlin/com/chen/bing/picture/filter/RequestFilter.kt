@@ -1,5 +1,6 @@
 package com.chen.bing.picture.filter
 
+import com.chen.bing.picture.constants.PictureConstants
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import org.springframework.util.AntPathMatcher
@@ -19,13 +20,11 @@ import javax.servlet.http.HttpServletRequest
 @WebFilter(filterName = "requestFilter",urlPatterns = ["/*"])
 class RequestFilter: Filter {
 
-    private val path = "/picture/**"
-
     private val logger = LoggerFactory.getLogger(RequestFilter::class.java)
 
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         val servletRequest = request as HttpServletRequest
-        if (AntPathMatcher().match("/picture/**",servletRequest.requestURI)){
+        if (AntPathMatcher().match(PictureConstants.requestPath,servletRequest.requestURI)){
             chain!!.doFilter(request, response)
         } else {
             logger.info(servletRequest.requestURI)

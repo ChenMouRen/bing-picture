@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.chen.bing</groupId>
     <artifactId>picture</artifactId>
-    <version>1.0.1-RELEASE</version>
+    <version>1.0.2-RELEASE</version>
     <name>picture</name>
     <description>必应日图接口</description>
 

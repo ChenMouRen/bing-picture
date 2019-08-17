@@ -15,4 +15,6 @@ object PictureConstants {
 
     val allDataKeyName = "pictureData"
 
+    val requestPath = "/picture/**"
+
 }
