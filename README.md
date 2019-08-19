@@ -5,4 +5,5 @@
 * /picture/date?date=2018-08-19 获取指定日期的图片数据,最早到2019-05-13,前面的没有去搞,日期格式必须是这种格式,如果不正确则无法获取到数据<br>
 * /picture 获取目前最新的数据,每天上午9点30分更新
 
-demo地址:  http://39.108.228.210/picture
+demo地址:  http://39.108.228.210/picture<br>
+项目需要jdk8及以上版本,clone后,修改src/main/resources/application.yaml下的数据库连接地址和redis连接地址即可运行,数据库表会自动创建
