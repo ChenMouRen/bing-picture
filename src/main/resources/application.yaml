@@ -3,14 +3,14 @@ spring:
     name: bing-picture
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://39.108.228.210:3306/picture
-    username: root
-    password: 729158
+    url: jdbc:mysql://你的数据库链接:3306/picture
+    username: 数据库用户
+    password: 数据库密码
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       maximum-pool-size: 2
   redis:
-    host: 39.108.228.210
+    host: redishost
     port: 6379
     database: 0
   jpa:
