@@ -15,7 +15,7 @@ spring:
     database: 0
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
 server:
