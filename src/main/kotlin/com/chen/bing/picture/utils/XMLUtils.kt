@@ -3,19 +3,22 @@ package com.chen.bing.picture.utils
 import com.chen.bing.picture.bean.Picture
 import com.chen.bing.picture.constants.PictureConstants
 import org.dom4j.Document
-import org.dom4j.Element
 import org.dom4j.io.SAXReader
 import java.io.InputStream
 import java.util.concurrent.CompletableFuture
-import java.util.function.BiConsumer
 
 /**
- * @author: 陈海楠
+ * @author: 1806632927@qq.com
  * @date: 2019/7/25
- * @description:
+ * @version 2.0
+ * @description: 从获取的XML中解析出实体类数据
+ * @since 2.0 使用异步操作替换同步操作,当XML数量比较大时可以有效提升效率
  */
 object XMLUtils {
 
+    /**
+     * 从获取的XML中解析出实体类数据
+     */
     fun getPictureDataFromXMl(inputStream: InputStream): List<Picture> {
         return CompletableFuture.supplyAsync { initDocument(inputStream) }
                 .thenApply { it.rootElement }

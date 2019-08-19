@@ -7,36 +7,38 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
 /**
- * @author Chen
+ * @author 1806632927@qq.com
  * @date 2019/8/17
  * @version 1.0
- * <p>
- *
- * </p>
+ * @description: 日期操作封装工具类
  */
 object DateUtils {
 
-    private val dateRegex = "^\\d{4}-\\d{2}-\\d{2}"
+    private const val dateRegex = "^\\d{4}-\\d{2}-\\d{2}"
 
+    /**
+     * 验证日期是否为 yyyy-MM-dd 格式
+     * 判断日期是否为合法日期,如 2019-08-17 2019-08-32
+     */
     fun isValidDate(str: String): Boolean {
-        // 先判断日期是否符合格式
         if (str.matches(Regex(dateRegex))) {
-            // 判断日期是否合法
-            val dateFormat = DateTimeFormatter.ISO_DATE
-            try {
-                val date = dateFormat.parse(str)
-                return true
+            return try {
+                val date = DateTimeFormatter.ISO_DATE.parse(str)
+                true
             } catch (d: DateTimeParseException) {
-                return false
+                false
             }
         }
         return false
     }
 
+    /**
+     * 获取当天的日期字符串
+     */
     fun getTodayDateString(): String = LocalDate.now().format(DateTimeFormatter.ISO_DATE)
 
     /**
-     * 根据当前时间来确定返回哪个链接
+     * 根据当前时间来确定返回哪个链接,9点30之前当天的数据还没有获取,故返回昨天的链接
      */
     fun getDateStringByTime(): String {
         val seconds = between(LocalTime.now(), LocalTime.of(9, 30)).seconds

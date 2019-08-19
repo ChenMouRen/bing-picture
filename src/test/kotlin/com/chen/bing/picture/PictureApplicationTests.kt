@@ -20,21 +20,8 @@ import java.util.concurrent.CompletableFuture
 @SpringBootTest
 class PictureApplicationTests {
 
-    private val logger = LoggerFactory.getLogger("PictureApplicationTests")
-
-    @Autowired
-    private lateinit var pictureRepository: PictureRepository
-
-    @Autowired
-    private lateinit var redisTemplate: RedisTemplate<String, String>
-
-
     @Test
     fun contextLoads() {
-        redisTemplate.execute{connection -> connection.execute("FLUSHALL") }
-        val json = JSON.toJSONString(pictureRepository.findAll())
-        redisTemplate.opsForValue().set(PictureConstants.allDataKeyName,json)
-        println(redisTemplate.opsForValue().get(PictureConstants.allDataKeyName))
     }
 
 }

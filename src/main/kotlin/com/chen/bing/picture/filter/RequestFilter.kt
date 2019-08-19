@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletRequest
 /**
  * @author: 1806632927@qq.com
  * @date: 2019/7/24
- * @description:
+ * @version 1.0
+ * @description: 拦截器,用于拦截搜索引擎抓取导致的服务器大量404日志
  */
 @Component
 @WebFilter(filterName = "requestFilter",urlPatterns = ["/*"])

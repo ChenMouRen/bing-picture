@@ -15,9 +15,10 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
 /**
- * @author: 陈海楠
+ * @author: 1806632927@qq.com
  * @date: 2019/7/25
- * @description:
+ * @version 2.0
+ * @description: 使用kotlin语法糖大幅优化代码
  */
 @RestController
 @RequestMapping("/picture", produces = [MediaType.APPLICATION_JSON_UTF8_VALUE])
